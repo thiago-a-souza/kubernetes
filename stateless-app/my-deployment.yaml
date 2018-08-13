@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: 
+  name: my-deployment
+  labels:
+    app: my-deployment-label
+spec:
+  replicas: 3 
+  template: 
+    metadata:
+      name: my-pod
+      labels:
+        app: my-pod-label
+    spec:
+      containers:
+      - image: gcr.io/YOUR_PROJECT_ID/my-app-image:1.0  # modify to your project id 
+        name: my-container-name
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8081
+        resources:
+          limits:
+            cpu: 0.2 
+            memory: 32M
+          requests:
+            cpu: 0.1
+            memory: 16M
+

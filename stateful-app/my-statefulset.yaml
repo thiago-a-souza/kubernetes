@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata: 
+  name: my-statefulset
+  labels:
+    app: my-statefulset-label
+spec:
+  replicas: 2
+  serviceName: my-app-stateful
+  template: 
+    metadata:
+      name: my-pod
+      labels:
+        app: my-statefulset-pod-label
+    spec:
+      containers:
+      - image: gcr.io/YOUR_PROJECT_ID/my-app-image:1.0
+        name: my-container-name
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8081
+        resources:
+          limits:
+            cpu: 0.2 
+            memory: 32M
+          requests:
+            cpu: 0.1
+            memory: 16M
+        volumeMounts:
+        - name: my-pvc-volume 
+          mountPath: /data    # container mount path
+  volumeClaimTemplates:
+  - metadata:
+      name: my-pvc-volume
+    spec:
+      resources:
+        requests:
+          storage: 1Gi
+      accessModes:
+      - ReadWriteOnce 
