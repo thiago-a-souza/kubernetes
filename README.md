@@ -10,7 +10,7 @@ Because Kubernetes is continuously monitoring the state of deployed applications
 Kubernetes architecture, illustrated in Figure 1, comprises different components running on master and slave nodes.
 
 <p align="center">
-<img src="https://github.com/thiago-a-souza/kubernetes/blob/master/kubernetes-architecture.png"  height="60%" width="60%"> <br>
+<img src="https://user-images.githubusercontent.com/17576728/126628066-6cd36661-73da-4b63-8caf-7dd29dcbe0eb.png"  height="60%" width="60%"> <br>
 Figure 1: Kubernetes Architecture <a href="https://github.com/thiago-a-souza/kubernetes/blob/master/README.md#references">(1)</a> </p> 
 
 **Master Node:**
